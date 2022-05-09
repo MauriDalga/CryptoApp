@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">CryptoApp</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_enter">ENTRAR</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="invalid_email">Email no válido</string>
+    <string name="invalid_password">Password debe tener al menos 7 carácteres</string>
+    <string name="login_failed">"Login failed"</string>
+
+    <!-- Strings related to home -->
+    <string name="welcome">"Bienvenido !"</string>
+
+    <!-- Strings related to login -->
+    <string name="register">"Registrar !"</string>
+    <string name="register_now">¿No tienes una cuenta? ¡Regístrate ahora!</string>
+    <string name="login_title">Inicio de Sesión</string>
+    <string name="cryptoapp_logo_description">logo de cryptoapp</string>
+</resources>
