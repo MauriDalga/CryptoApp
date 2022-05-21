@@ -54,7 +54,7 @@ class LoginFragment : Fragment() {
                 loginFormState.emailError?.let {
                     emailEditText.error = getString(it)
                 }
-                loginFormState.emailError?.let {
+                loginFormState.passwordError?.let {
                     passwordEditText.error = getString(it)
                 }
             })
