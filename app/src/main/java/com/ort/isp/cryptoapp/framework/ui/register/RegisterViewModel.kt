@@ -9,7 +9,7 @@ import com.ort.isp.cryptoapp.R
 import com.ort.isp.cryptoapp.data.model.RegisterCredential
 import com.ort.isp.cryptoapp.data.model.Resource
 import com.ort.isp.cryptoapp.data.repository.RegisterRepository
-import com.ort.isp.cryptoapp.framework.data.model.LoggedInUser
+import com.ort.isp.cryptoapp.framework.data.model.RegisteredUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,10 +21,10 @@ class RegisterViewModel @Inject constructor(private val registerRepository: Regi
     private val _registerForm = MutableLiveData<RegisterFormState>()
     val registerFormState: LiveData<RegisterFormState> = _registerForm
 
-    private val _registerResult = MutableLiveData<Resource<LoggedInUser>>()
-    val registerResult: LiveData<Resource<LoggedInUser>> = _registerResult
+    private val _registerResult = MutableLiveData<Resource<RegisteredUser>>()
+    val registerResult: LiveData<Resource<RegisteredUser>> = _registerResult
 
-    fun register(name: String, lastName: String, email: String, password: String, secondPassword: String) {
+    fun register(name: String, lastName: String, email: String, password: String) {
         viewModelScope.launch {
             _registerResult.value = Resource.Loading()
             _registerResult.value = registerRepository.register(RegisterCredential(name, lastName, email, password))
@@ -32,7 +32,7 @@ class RegisterViewModel @Inject constructor(private val registerRepository: Regi
     }
 
     fun registerDataChanged(name: String, lastName: String, email: String, password: String, secondPassword: String) {
-        if(name.isEmpty()){
+        if (name.isEmpty()) {
             _registerForm.value = RegisterFormState(nameError = R.string.invalid_name)
         } else if (lastName.isEmpty()) {
             _registerForm.value = RegisterFormState(lastNameError = R.string.invalid_last_name)
@@ -60,6 +60,7 @@ class RegisterViewModel @Inject constructor(private val registerRepository: Regi
     private fun isPasswordValid(password: String): Boolean {
         return password.length >= PASSWORD_MIN_LENGTH
     }
+
     private fun arePasswordsTheSame(password: String, secondPassword: String): Boolean {
         return password.equals(secondPassword)
     }

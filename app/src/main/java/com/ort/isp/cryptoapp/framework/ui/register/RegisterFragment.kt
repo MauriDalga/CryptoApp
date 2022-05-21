@@ -116,18 +116,19 @@ class RegisterFragment : Fragment() {
         secondPasswordEditText.addTextChangedListener(afterTextChangedListener)
 
         registerButton.setOnClickListener {
-            loadingProgressBar.visibility = View.VISIBLE
-            registerViewModel.register(
-                nameEditText.text.toString(),
-                lastNameEditText.text.toString(),
-                emailEditText.text.toString(),
-                passwordEditText.text.toString(),
-                secondPasswordEditText.text.toString()
-            )
+            if (registerViewModel.isFormDataValid()) {
+                loadingProgressBar.visibility = View.VISIBLE
+                registerViewModel.register(
+                    nameEditText.text.toString(),
+                    lastNameEditText.text.toString(),
+                    emailEditText.text.toString(),
+                    passwordEditText.text.toString()
+                )
+            }
         }
 
         loginLinkText.setOnClickListener {
-            val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment();
+            val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
             findNavController().navigate(action)
         }
     }
