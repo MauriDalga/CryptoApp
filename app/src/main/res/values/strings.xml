@@ -18,4 +18,8 @@
     <string name="register_now">¿No tienes una cuenta? ¡Regístrate ahora!</string>
     <string name="login_title">Inicio de Sesión</string>
     <string name="cryptoapp_logo_description">logo de cryptoapp</string>
+
+    <!-- Simple titles strings  -->
+    <string name="title_home">"Inicio"</string>
+    <string name="Olivia">Olivia H.</string>
 </resources>

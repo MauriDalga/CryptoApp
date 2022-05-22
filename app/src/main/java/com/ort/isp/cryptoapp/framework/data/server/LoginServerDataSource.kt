@@ -10,6 +10,8 @@ class LoginServerDataSource @Inject constructor(private val loginService: LoginS
     RemoteLoginDataSource, AbstractServerDataSource() {
 
     override suspend fun login(credential: LoginCredential): Resource<LoggedInUser> {
-        return safeApiCall { loginService.login(credential) }
+        var loggedInUser = LoggedInUser("123","Romi","12344")
+        return Resource.Success(loggedInUser)
+//        safeApiCall { loginService.login(credential) }
     }
 }
