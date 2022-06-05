@@ -10,9 +10,6 @@
     <string name="invalid_password">Password debe tener al menos 7 carácteres</string>
     <string name="login_failed">"Login failed"</string>
 
-    <!-- Strings related to home -->
-    <string name="home_title">"Inicio"</string>
-
     <!-- Strings related to login -->
     <string name="register">"Registrar !"</string>
     <string name="register_now">¿No tienes una cuenta? ¡Regístrate ahora!</string>
@@ -30,6 +27,18 @@
     <string name="invalid_name">El nombre no puede ser vacío</string>
     <string name="invalid_last_name">El apellido no puede ser vacío</string>
     <string name="invalid_password_combination">Las contraseñas deben ser iguales</string>
-    <string name="title_home">Inicio</string>
-    <string name="Olivia">Olivia H.</string>
+
+    <!-- Simple titles strings  -->
+    <string name="home_title">Inicio</string>
+    <string name="transaction_history_title">Historial de \ntransacciones</string>
+    <string name="market_price_title">Precio mercado</string>
+    <string name="share_QR_title">Compartir QR</string>
+    <string name="read_QR_title">Escaneando QR</string>
+
+    <!-- Strings related to menu  -->
+    <string name="home_menu">INICIO</string>
+    <string name="transaction_history_menu">HISTORIAL DE \nTRANSACCIONES</string>
+    <string name="market_price_menu">PRECIO MERCADO</string>
+    <string name="share_QR_menu">COMPARTIR QR</string>
+    <string name="read_QR_menu">LEER QR</string>
 </resources>

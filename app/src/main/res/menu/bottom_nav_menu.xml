@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MenuTitle">
+
+    <item
+        android:id="@+id/navigation_read_qr"
+        android:icon="@drawable/ic_read_qr" />
+    <item
+        android:id="@+id/navigation_share_qr"
+        android:icon="@drawable/ic_share_qr" />
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home" />
+    <item
+        android:id="@+id/navigation_transaction_history"
+        android:icon="@drawable/ic_transaction_history" />
+    <item
+        android:id="@+id/navigation_market_price"
+        android:icon="@drawable/ic_market_price" />
+
+</menu>
