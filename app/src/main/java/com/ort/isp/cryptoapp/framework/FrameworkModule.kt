@@ -5,9 +5,12 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.ort.isp.cryptoapp.data.source.LocalSessionDataSource
 import com.ort.isp.cryptoapp.data.source.RemoteLoginDataSource
+import com.ort.isp.cryptoapp.data.source.RemoteRegisterDataSource
 import com.ort.isp.cryptoapp.framework.data.local.LoginSharedPreferenceDataSource
 import com.ort.isp.cryptoapp.framework.data.server.LoginServerDataSource
 import com.ort.isp.cryptoapp.framework.data.server.LoginService
+import com.ort.isp.cryptoapp.framework.data.server.RegisterServerDataSource
+import com.ort.isp.cryptoapp.framework.data.server.RegisterService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -53,4 +56,16 @@ class FrameworkModule {
     @Provides
     fun sharedPreferencesProvider(application: Application): SharedPreferences =
         application.getSharedPreferences("userPreferences", Context.MODE_PRIVATE)
+
+    @Singleton
+    @Provides
+    fun registerServiceProvider(retrofit: Retrofit): RegisterService =
+        retrofit.create(RegisterService::class.java)
+
+    @Singleton
+    @Provides
+    fun registerServerDataSource(registerService: RegisterService): RemoteRegisterDataSource =
+        RegisterServerDataSource(registerService)
+
+
 }

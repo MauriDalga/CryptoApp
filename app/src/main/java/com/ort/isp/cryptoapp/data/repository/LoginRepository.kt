@@ -43,7 +43,7 @@ class LoginRepository @Inject constructor(
         localSessionDataSource.delete()
     }
 
-    private fun setLoggedInUser(loggedInUser: LoggedInUser) {
+    fun setLoggedInUser(loggedInUser: LoggedInUser) {
         this.user = loggedInUser
         localSessionDataSource.save(loggedInUser)
     }
