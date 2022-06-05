@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,8 +10,7 @@
         android:id="@+id/top_navigation_bar"
         android:layout_width="match_parent"
         android:layout_height="63dp"
-        android:background="@drawable/header_selector"
-        tools:ignore="MissingConstraints">
+        android:background="@drawable/header_selector">
 
         <ImageView
             android:id="@+id/logo"
@@ -22,9 +19,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="18dp"
             android:contentDescription="@string/cryptoapp_logo_description"
-            android:src="@drawable/solitary_logo"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/solitary_logo" />
 
         <TextView
             android:id="@+id/simple_title"
@@ -36,10 +31,7 @@
             android:text="@string/title_home"
             android:textColor="@color/white"
             android:textSize="25sp"
-            android:textStyle="normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textStyle="normal" />
 
         <Button
             android:id="@+id/menu"
@@ -49,10 +41,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/menu"
-            android:enabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintVertical_bias="0.0" />
+            android:enabled="true" />
 
         <TextView
             android:id="@+id/person_name_title"
@@ -63,9 +52,7 @@
             android:text="@string/Olivia"
             android:textColor="@color/white"
             android:textSize="15sp"
-            android:textStyle="normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textStyle="normal" />
 
     </androidx.appcompat.widget.Toolbar>
 
