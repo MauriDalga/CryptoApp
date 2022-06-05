@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.ort.isp.cryptoapp.R
 import com.ort.isp.cryptoapp.databinding.FragmentHomeBinding
+import com.ort.isp.cryptoapp.framework.ui.TitledNavActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,6 +22,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        (activity as TitledNavActivity).setNavTitle(getString(R.string.home_title))
         return binding.root
     }
 
