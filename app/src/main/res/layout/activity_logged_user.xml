@@ -4,6 +4,9 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/coins_background"
+    android:backgroundTint="@color/big_alpha"
+    android:backgroundTintMode="src_over"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
@@ -26,9 +29,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="0dp"
             android:gravity="center_vertical"
-            android:text="@string/title_home"
+            android:text="@string/home_title"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="normal" />
@@ -41,7 +44,8 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/menu"
-            android:enabled="true" />
+            android:enabled="true"
+            app:menu="@menu/bottom_nav_menu" />
 
         <TextView
             android:id="@+id/person_name_title"
@@ -49,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginTop="20dp"
-            android:text="@string/Olivia"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="normal" />
@@ -60,8 +64,19 @@
         android:id="@+id/nav_host_fragment_activity_logged_user"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         app:defaultNavHost="true"
         app:navGraph="@navigation/logged_user_navigation" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="?android:attr/windowBackgroundFallback"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconSize="30dp" />
 
 </LinearLayout>
