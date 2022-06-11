@@ -5,6 +5,6 @@ data class UserFullData(
     val lastname: String,
     val email: String,
     val token: String,
-    val image: String,
+    val image: String?,
     val coinAccounts: List<CoinAccount>
 )

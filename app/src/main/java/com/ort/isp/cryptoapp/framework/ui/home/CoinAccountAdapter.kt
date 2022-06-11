@@ -1,7 +1,5 @@
 package com.ort.isp.cryptoapp.framework.ui.home
 
-import android.graphics.BitmapFactory
-import android.util.Base64
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +7,7 @@ import com.ort.isp.cryptoapp.R
 import com.ort.isp.cryptoapp.data.model.`in`.CoinAccount
 import com.ort.isp.cryptoapp.databinding.CoinAccountRowBinding
 import com.ort.isp.cryptoapp.framework.ui.shared.inflate
+import com.ort.isp.cryptoapp.framework.ui.shared.toBase64Bitmap
 
 
 class CoinAccountAdapter : RecyclerView.Adapter<CoinAccountAdapter.ViewHolder>() {
@@ -36,9 +35,7 @@ class CoinAccountAdapter : RecyclerView.Adapter<CoinAccountAdapter.ViewHolder>()
         private val binding = CoinAccountRowBinding.bind(view)
 
         fun bind(coinAccount: CoinAccount) = with(binding) {
-            val imageBytes = Base64.decode(coinAccount.coin.icon, Base64.DEFAULT)
-            val decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
-            coinIcon.setImageBitmap(decodedImage)
+            coinIcon.setImageBitmap(coinAccount.coin.icon.toBase64Bitmap())
             coinName.text = "${coinAccount.coin.longName}\n${coinAccount.coin.shortName}"
             coinBalance.text = "${coinAccount.balance} ${coinAccount.coin.shortName}"
         }

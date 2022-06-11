@@ -10,9 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ort.isp.cryptoapp.R
 import com.ort.isp.cryptoapp.data.model.Resource
+import com.ort.isp.cryptoapp.data.model.`in`.UserFullData
 import com.ort.isp.cryptoapp.databinding.FragmentHomeBinding
 import com.ort.isp.cryptoapp.framework.ui.shared.TitledNavActivity
 import com.ort.isp.cryptoapp.framework.ui.shared.showMessage
+import com.ort.isp.cryptoapp.framework.ui.shared.toBase64Bitmap
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -50,7 +52,7 @@ class HomeFragment : Fragment() {
                 is Resource.Loading -> loadingProgressBar.visibility = View.VISIBLE
                 is Resource.Success -> {
                     loadingProgressBar.visibility = View.GONE
-                    adapter.setCoinAccount(userFullData.data!!.coinAccounts)
+                    updateUIWithUserData(userFullData.data!!)
                 }
                 else -> {
                     loadingProgressBar.visibility = View.GONE
@@ -66,5 +68,14 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun updateUIWithUserData(userFullData: UserFullData) {
+        adapter.setCoinAccount(userFullData.coinAccounts)
+        userFullData.image?.takeIf { it.isNotBlank() }
+            ?.let { binding.userPhoto.setImageBitmap(it.toBase64Bitmap()) }
+
+        binding.userCompleteName.text = "${userFullData.name}\n${userFullData.lastname}"
+        binding.userEmail.text = userFullData.email
     }
 }
