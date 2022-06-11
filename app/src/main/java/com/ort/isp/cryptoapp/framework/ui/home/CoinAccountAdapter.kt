@@ -9,7 +9,6 @@ import com.ort.isp.cryptoapp.databinding.CoinAccountRowBinding
 import com.ort.isp.cryptoapp.framework.ui.shared.inflate
 import com.ort.isp.cryptoapp.framework.ui.shared.toBase64Bitmap
 
-
 class CoinAccountAdapter : RecyclerView.Adapter<CoinAccountAdapter.ViewHolder>() {
 
     var coinAccounts = mutableListOf<CoinAccount>()

@@ -46,4 +46,8 @@
     <string name="coin_icon_row_description">Ícono de moneda</string>
     <string name="my_coins_title">MIS MONEDAS</string>
     <string name="edit_user_photo">Editar foto</string>
+
+    <!-- Strings related to TransactionHistoryFragment -->
+    <string name="operation">operation</string>
+    <string name="empty_transactions">No existen transacciones \npor el momento.</string>
 </resources>
