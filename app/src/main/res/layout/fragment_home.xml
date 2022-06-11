@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home"
     android:layout_width="match_parent"
@@ -11,8 +12,63 @@
         android:id="@+id/profile_element"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.45" />
+        android:layout_weight="0.45">
 
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_photo"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/default_user_image" />
+
+        <TextView
+            android:id="@+id/edit_user_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/roboto"
+            android:clickable="true"
+            android:text="@string/edit_user_photo"
+            android:textSize="20sp"
+            android:drawablePadding="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_photo"
+            app:drawableLeftCompat="@drawable/edit_icon" />
+
+        <TextView
+            android:id="@+id/user_complete_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="45dp"
+            android:fontFamily="@font/comfortaa"
+            android:lines="2"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintStart_toEndOf="@+id/user_photo"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Pepe Delgado" />
+
+        <TextView
+            android:id="@+id/user_email"
+            style="@style/Widget.CryptoApp.InfoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/user_photo"
+            app:layout_constraintTop_toBottomOf="@+id/user_complete_name"
+            tools:text="pepe@gmail.com" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,7 +94,6 @@
             tools:itemCount="3" />
 
     </LinearLayout>
-
 
     <ProgressBar
         android:id="@+id/loading"

@@ -45,4 +45,5 @@
     <!-- Strings related to HomeFragment -->
     <string name="coin_icon_row_description">Ícono de moneda</string>
     <string name="my_coins_title">MIS MONEDAS</string>
+    <string name="edit_user_photo">Editar foto</string>
 </resources>
