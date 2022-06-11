@@ -4,10 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import com.ort.isp.cryptoapp.data.repository.LoginRepository
-import com.ort.isp.cryptoapp.data.source.LocalSessionDataSource
-import com.ort.isp.cryptoapp.data.source.RemoteLoginDataSource
-import com.ort.isp.cryptoapp.data.source.RemoteRegisterDataSource
-import com.ort.isp.cryptoapp.data.source.RemoteUserDataSource
+import com.ort.isp.cryptoapp.data.source.*
 import com.ort.isp.cryptoapp.framework.data.local.LoginSharedPreferenceDataSource
 import com.ort.isp.cryptoapp.framework.data.server.*
 import com.ort.isp.cryptoapp.framework.tools.AuthInterceptor
@@ -21,7 +18,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Named
 import javax.inject.Singleton
-
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -71,6 +67,11 @@ class FrameworkModule {
 
     @Singleton
     @Provides
+    fun transactionServiceProvider(@Named(RETROFIT_WITH_AUTH) retrofit: Retrofit): TransactionService =
+        retrofit.create(TransactionService::class.java)
+
+    @Singleton
+    @Provides
     fun userServiceProvider(@Named(RETROFIT_WITH_AUTH) retrofit: Retrofit): UserService =
         retrofit.create(UserService::class.java)
 
@@ -94,6 +95,10 @@ class FrameworkModule {
     fun registerServerDataSource(registerService: RegisterService): RemoteRegisterDataSource =
         RegisterServerDataSource(registerService)
 
+    @Singleton
+    @Provides
+    fun transactionServerDataSourceProvider(transactionService: TransactionService): RemoteTransactionDataSource =
+        TransactionServerDataSource(transactionService)
 
     @Singleton
     @Provides
