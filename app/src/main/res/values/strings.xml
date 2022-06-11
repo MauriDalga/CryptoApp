@@ -41,4 +41,8 @@
     <string name="market_price_menu">PRECIO MERCADO</string>
     <string name="share_QR_menu">COMPARTIR QR</string>
     <string name="read_QR_menu">LEER QR</string>
+
+    <!-- Strings related to HomeFragment -->
+    <string name="coin_icon_row_description">Ícono de moneda</string>
+    <string name="my_coins_title">MIS MONEDAS</string>
 </resources>

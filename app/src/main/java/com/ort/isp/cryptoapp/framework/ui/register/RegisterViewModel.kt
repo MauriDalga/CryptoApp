@@ -6,10 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ort.isp.cryptoapp.R
-import com.ort.isp.cryptoapp.data.model.RegisterCredential
 import com.ort.isp.cryptoapp.data.model.Resource
+import com.ort.isp.cryptoapp.data.model.`in`.RegisteredUser
+import com.ort.isp.cryptoapp.data.model.out.RegisterCredential
 import com.ort.isp.cryptoapp.data.repository.RegisterRepository
-import com.ort.isp.cryptoapp.framework.data.model.RegisteredUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

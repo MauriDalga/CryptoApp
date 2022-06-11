@@ -1,10 +1,10 @@
 package com.ort.isp.cryptoapp.data.repository
 
-import com.ort.isp.cryptoapp.data.model.RegisterCredential
 import com.ort.isp.cryptoapp.data.model.Resource
+import com.ort.isp.cryptoapp.data.model.`in`.LoggedInUser
+import com.ort.isp.cryptoapp.data.model.`in`.RegisteredUser
+import com.ort.isp.cryptoapp.data.model.out.RegisterCredential
 import com.ort.isp.cryptoapp.data.source.RemoteRegisterDataSource
-import com.ort.isp.cryptoapp.framework.data.model.LoggedInUser
-import com.ort.isp.cryptoapp.framework.data.model.RegisteredUser
 import javax.inject.Inject
 
 /**
@@ -20,8 +20,7 @@ class RegisterRepository @Inject constructor(
         val result = remoteRegisterDataSource.register(credential)
 
         if (result is Resource.Success) {
-            val loggedInUser = LoggedInUser(result.data!!.id, result.data.name, result.data.token)
-            loginRepository.setLoggedInUser(loggedInUser)
+            loginRepository.setLoggedInUser(LoggedInUser.createFrom(result.data!!))
         }
 
         return result
