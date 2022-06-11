@@ -3,14 +3,14 @@ package com.ort.isp.cryptoapp.framework
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import com.ort.isp.cryptoapp.data.repository.LoginRepository
 import com.ort.isp.cryptoapp.data.source.LocalSessionDataSource
 import com.ort.isp.cryptoapp.data.source.RemoteLoginDataSource
 import com.ort.isp.cryptoapp.data.source.RemoteRegisterDataSource
+import com.ort.isp.cryptoapp.data.source.RemoteUserDataSource
 import com.ort.isp.cryptoapp.framework.data.local.LoginSharedPreferenceDataSource
-import com.ort.isp.cryptoapp.framework.data.server.LoginServerDataSource
-import com.ort.isp.cryptoapp.framework.data.server.LoginService
-import com.ort.isp.cryptoapp.framework.data.server.RegisterServerDataSource
-import com.ort.isp.cryptoapp.framework.data.server.RegisterService
+import com.ort.isp.cryptoapp.framework.data.server.*
+import com.ort.isp.cryptoapp.framework.tools.AuthInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,6 +19,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
 import javax.inject.Singleton
 
 
@@ -28,10 +29,11 @@ class FrameworkModule {
 
     @Singleton
     @Provides
-    fun retrofitProvider(): Retrofit {
+    @Named(RETROFIT_WITHOUT_AUTH)
+    fun retrofitWithoutAuthProvider(): Retrofit {
         val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
-        return Retrofit.Builder().baseUrl("https://localhost")
+        return Retrofit.Builder().baseUrl(BASE_API_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -39,13 +41,38 @@ class FrameworkModule {
 
     @Singleton
     @Provides
-    fun loginServiceProvider(retrofit: Retrofit): LoginService =
+    fun retrofitAuthInterceptorProvider(loginRepository: LoginRepository) =
+        AuthInterceptor(loginRepository)
+
+    @Singleton
+    @Provides
+    @Named(RETROFIT_WITH_AUTH)
+    fun retrofitWithAuthProvider(authInterceptor: AuthInterceptor): Retrofit {
+        val interceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        val client = OkHttpClient.Builder()
+            .addInterceptor(interceptor)
+            .addInterceptor(authInterceptor)
+            .build()
+        return Retrofit.Builder().baseUrl(BASE_API_URL)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    @Singleton
+    @Provides
+    fun loginServiceProvider(@Named(RETROFIT_WITHOUT_AUTH) retrofit: Retrofit): LoginService =
         retrofit.create(LoginService::class.java)
 
     @Singleton
     @Provides
     fun loginServerDataSource(loginService: LoginService): RemoteLoginDataSource =
         LoginServerDataSource(loginService)
+
+    @Singleton
+    @Provides
+    fun userServiceProvider(@Named(RETROFIT_WITH_AUTH) retrofit: Retrofit): UserService =
+        retrofit.create(UserService::class.java)
 
     @Singleton
     @Provides
@@ -59,7 +86,7 @@ class FrameworkModule {
 
     @Singleton
     @Provides
-    fun registerServiceProvider(retrofit: Retrofit): RegisterService =
+    fun registerServiceProvider(@Named(RETROFIT_WITHOUT_AUTH) retrofit: Retrofit): RegisterService =
         retrofit.create(RegisterService::class.java)
 
     @Singleton
@@ -68,4 +95,12 @@ class FrameworkModule {
         RegisterServerDataSource(registerService)
 
 
+    @Singleton
+    @Provides
+    fun userServerDataSourceProvider(userService: UserService): RemoteUserDataSource =
+        UserServerDataSource(userService)
 }
+
+const val RETROFIT_WITHOUT_AUTH = "RetrofitWithoutAuth"
+const val RETROFIT_WITH_AUTH = "RetrofitWithAuth"
+const val BASE_API_URL = "http://10.0.2.2:5165/api/"

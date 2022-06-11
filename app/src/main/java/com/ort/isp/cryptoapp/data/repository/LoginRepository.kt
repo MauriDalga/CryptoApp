@@ -1,8 +1,8 @@
 package com.ort.isp.cryptoapp.data.repository
 
-import com.ort.isp.cryptoapp.data.model.LoginCredential
 import com.ort.isp.cryptoapp.data.model.Resource
-import com.ort.isp.cryptoapp.framework.data.model.LoggedInUser
+import com.ort.isp.cryptoapp.data.model.`in`.LoggedInUser
+import com.ort.isp.cryptoapp.data.model.out.LoginCredential
 import com.ort.isp.cryptoapp.data.source.LocalSessionDataSource
 import com.ort.isp.cryptoapp.data.source.RemoteLoginDataSource
 import javax.inject.Inject

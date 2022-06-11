@@ -35,7 +35,7 @@ abstract class AbstractServerDataSource {
                 }
 
             } catch (e: HttpException) {
-                Resource.Error(errorMessage = e.message ?: CHECK_YOUR_INTENRT)
+                Resource.Error(errorMessage = e.message ?: CHECK_YOUR_INTERNET)
             } catch (e: Exception) {
                 Resource.Error(errorMessage = SOMETHING_WENT_WRONG)
             }
@@ -52,5 +52,5 @@ abstract class AbstractServerDataSource {
 }
 
 private const val SOMETHING_WENT_WRONG = "Error desconocido"
-private const val CHECK_YOUR_INTENRT = "Por favor, revisa tu conexión a internet"
+private const val CHECK_YOUR_INTERNET = "Por favor, revisa tu conexión a internet"
 private const val HTTP_UNAUTHORIZED_CODE = 401

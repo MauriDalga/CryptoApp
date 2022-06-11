@@ -7,7 +7,6 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.ort.isp.cryptoapp.data.model.Resource
 import com.ort.isp.cryptoapp.databinding.FragmentRegisterBinding
 import com.ort.isp.cryptoapp.framework.ui.LoggedUserActivity
+import com.ort.isp.cryptoapp.framework.ui.shared.showMessage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,9 +48,8 @@ class RegisterFragment : Fragment() {
 
         registerViewModel.registerFormState.observe(viewLifecycleOwner,
             Observer { registerFormState ->
-                if (registerFormState == null) {
-                    return@Observer
-                }
+                registerFormState ?: return@Observer
+
                 registerButton.isEnabled = registerFormState.isDataValid
                 registerFormState.nameError?.let {
                     nameEditText.error = getString(it)
@@ -82,7 +81,7 @@ class RegisterFragment : Fragment() {
                     }
                     is Resource.Error -> {
                         loadingProgressBar.visibility = View.GONE
-                        showRegisterFailed(registerResult.message!!)
+                        showMessage(registerResult.message!!)
                     }
                     else -> {
                         loadingProgressBar.visibility = View.GONE
@@ -131,11 +130,6 @@ class RegisterFragment : Fragment() {
             val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
             findNavController().navigate(action)
         }
-    }
-
-    private fun showRegisterFailed(errorString: String) {
-        val appContext = context?.applicationContext ?: return
-        Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroyView() {

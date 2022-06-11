@@ -1,3 +1,3 @@
-package com.ort.isp.cryptoapp.data.model
+package com.ort.isp.cryptoapp.data.model.out
 
 data class LoginCredential(val email: String, val password: String)

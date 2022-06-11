@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.ort.isp.cryptoapp.data.model.Resource
 import com.ort.isp.cryptoapp.databinding.FragmentLoginBinding
 import com.ort.isp.cryptoapp.framework.ui.LoggedUserActivity
+import com.ort.isp.cryptoapp.framework.ui.shared.showMessage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -47,9 +47,8 @@ class LoginFragment : Fragment() {
 
         loginViewModel.loginFormState.observe(viewLifecycleOwner,
             Observer { loginFormState ->
-                if (loginFormState == null) {
-                    return@Observer
-                }
+                loginFormState ?: return@Observer
+
                 loginButton.isEnabled = loginFormState.isDataValid
                 loginFormState.emailError?.let {
                     emailEditText.error = getString(it)
@@ -70,12 +69,9 @@ class LoginFragment : Fragment() {
                         startActivity(Intent(context, LoggedUserActivity::class.java))
                         activity?.finish()
                     }
-                    is Resource.Error -> {
-                        loadingProgressBar.visibility = View.GONE
-                        showLoginFailed(loginResult.message!!)
-                    }
                     else -> {
                         loadingProgressBar.visibility = View.GONE
+                        showMessage(loginResult.message!!)
                     }
                 }
             })
@@ -117,14 +113,9 @@ class LoginFragment : Fragment() {
         }
 
         registerLinkText.setOnClickListener {
-            val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment();
+            val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
             findNavController().navigate(action)
         }
-    }
-
-    private fun showLoginFailed(errorString: String) {
-        val appContext = context?.applicationContext ?: return
-        Toast.makeText(appContext, errorString, Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroyView() {

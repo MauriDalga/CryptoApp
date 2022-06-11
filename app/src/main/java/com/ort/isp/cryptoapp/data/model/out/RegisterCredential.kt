@@ -1,4 +1,4 @@
-package com.ort.isp.cryptoapp.data.model
+package com.ort.isp.cryptoapp.data.model.out
 
 class RegisterCredential(
     val name: String,

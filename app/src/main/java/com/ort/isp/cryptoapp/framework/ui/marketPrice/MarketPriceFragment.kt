@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ort.isp.cryptoapp.R
 import com.ort.isp.cryptoapp.databinding.FragmentMarketPriceBinding
-import com.ort.isp.cryptoapp.framework.ui.TitledNavActivity
+import com.ort.isp.cryptoapp.framework.ui.shared.TitledNavActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

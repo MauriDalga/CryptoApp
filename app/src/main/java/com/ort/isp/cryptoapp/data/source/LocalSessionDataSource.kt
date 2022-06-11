@@ -1,6 +1,6 @@
 package com.ort.isp.cryptoapp.data.source
 
-import com.ort.isp.cryptoapp.framework.data.model.LoggedInUser
+import com.ort.isp.cryptoapp.data.model.`in`.LoggedInUser
 
 interface LocalSessionDataSource {
     fun save(loggedInUser: LoggedInUser)
