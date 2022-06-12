@@ -12,6 +12,7 @@ import com.ort.isp.cryptoapp.R
 import com.ort.isp.cryptoapp.data.model.Resource
 import com.ort.isp.cryptoapp.databinding.FragmentTransactionHistoryBinding
 import com.ort.isp.cryptoapp.framework.ui.shared.TitledNavActivity
+import com.ort.isp.cryptoapp.framework.ui.shared.logout
 import com.ort.isp.cryptoapp.framework.ui.shared.showMessage
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -62,6 +63,9 @@ class TransactionHistoryFragment : Fragment() {
                             adapter.setTransactionsDetail(transactionsList)
                             binding.transactionHistoryList.visibility = View.VISIBLE
                         }
+                    }
+                    is Resource.Unauthorized -> {
+                        logout()
                     }
                     else -> {
                         loadingProgressBar.visibility = View.GONE
