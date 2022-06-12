@@ -1,6 +1,5 @@
 package com.ort.isp.cryptoapp.framework.data.server
 
-import com.google.gson.Gson
 import com.ort.isp.cryptoapp.data.model.Resource
 import com.ort.isp.cryptoapp.framework.data.model.ErrorResponse
 import kotlinx.coroutines.Dispatchers
@@ -8,6 +7,7 @@ import kotlinx.coroutines.withContext
 import okhttp3.ResponseBody
 import retrofit2.HttpException
 import retrofit2.Response
+import java.net.ConnectException
 
 abstract class AbstractServerDataSource {
 
@@ -21,7 +21,8 @@ abstract class AbstractServerDataSource {
 
                 when {
                     response.isSuccessful -> {
-                        Resource.Success(data = response.body()!!)
+                        response.body()?.let { Resource.Success(data = response.body()) }
+                            ?: Resource.Success(null)
                     }
                     response.code() == HTTP_UNAUTHORIZED_CODE -> {
                         Resource.Unauthorized()
@@ -33,18 +34,20 @@ abstract class AbstractServerDataSource {
                         )
                     }
                 }
-
-            } catch (e: HttpException) {
-                Resource.Error(errorMessage = e.message ?: CHECK_YOUR_INTERNET)
             } catch (e: Exception) {
-                Resource.Error(errorMessage = SOMETHING_WENT_WRONG)
+                when (e) {
+                    is HttpException, is ConnectException -> Resource.Error(
+                        errorMessage = CHECK_YOUR_INTERNET
+                    )
+                    else -> Resource.Error(errorMessage = SOMETHING_WENT_WRONG)
+                }
             }
         }
     }
 
     private fun convertErrorBody(errorBody: ResponseBody?): ErrorResponse? {
         return try {
-            Gson().fromJson(errorBody?.string(), ErrorResponse::class.java)
+            return ErrorResponse(errorBody?.string() ?: SOMETHING_WENT_WRONG)
         } catch (exception: Exception) {
             ErrorResponse(SOMETHING_WENT_WRONG)
         }

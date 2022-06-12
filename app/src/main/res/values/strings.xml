@@ -46,6 +46,8 @@
     <string name="coin_icon_row_description">Ícono de moneda</string>
     <string name="my_coins_title">MIS MONEDAS</string>
     <string name="edit_user_photo">Editar foto</string>
+    <string name="unexpected_upload_photo_error">Error inesperado al editar la foto.</string>
+    <string name="camera_access_denied_feedback">No se puede editar la foto sin acceso a la cámara</string>
 
     <!-- Strings related to TransactionHistoryFragment -->
     <string name="operation">operation</string>
