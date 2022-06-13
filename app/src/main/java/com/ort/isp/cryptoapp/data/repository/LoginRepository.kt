@@ -1,5 +1,6 @@
 package com.ort.isp.cryptoapp.data.repository
 
+import com.ort.isp.cryptoapp.data.model.LoggedUserLocalData
 import com.ort.isp.cryptoapp.data.model.Resource
 import com.ort.isp.cryptoapp.data.model.`in`.LoggedInUser
 import com.ort.isp.cryptoapp.data.model.out.LoginCredential
@@ -17,7 +18,7 @@ class LoginRepository @Inject constructor(
 ) {
 
     // in-memory cache of the loggedInUser object
-    private var user: LoggedInUser? = null
+    private var user: LoggedUserLocalData? = null
 
     private val isLoggedIn: Boolean
         get() = user != null
@@ -26,7 +27,7 @@ class LoginRepository @Inject constructor(
         user = null
     }
 
-    fun getSession(): LoggedInUser? = if (isLoggedIn) user else localSessionDataSource.get()
+    fun getSession(): LoggedUserLocalData? = if (isLoggedIn) user else localSessionDataSource.get()
 
     suspend fun login(credential: LoginCredential): Resource<LoggedInUser> {
         val result = remoteLoginDataSource.login(credential)
@@ -44,7 +45,6 @@ class LoginRepository @Inject constructor(
     }
 
     fun setLoggedInUser(loggedInUser: LoggedInUser) {
-        this.user = loggedInUser
-        localSessionDataSource.save(loggedInUser)
+        this.user = localSessionDataSource.save(loggedInUser)
     }
 }

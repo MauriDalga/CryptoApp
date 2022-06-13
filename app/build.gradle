@@ -73,4 +73,7 @@ dependencies {
 
     // Circular image view
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // Generate QR code
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
 }

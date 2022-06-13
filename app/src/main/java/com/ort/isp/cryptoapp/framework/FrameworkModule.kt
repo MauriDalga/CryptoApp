@@ -5,9 +5,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.ort.isp.cryptoapp.data.repository.LoginRepository
 import com.ort.isp.cryptoapp.data.source.*
-import com.ort.isp.cryptoapp.framework.data.local.LoginSharedPreferenceDataSource
+import com.ort.isp.cryptoapp.framework.data.local.LoggedUserLocalDataSource
 import com.ort.isp.cryptoapp.framework.data.server.*
 import com.ort.isp.cryptoapp.framework.tools.AuthInterceptor
+import com.ort.isp.cryptoapp.framework.tools.QrGenerator
+import com.ort.isp.cryptoapp.framework.tools.ZxingQrGenerator
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -39,6 +41,10 @@ class FrameworkModule {
     @Provides
     fun retrofitAuthInterceptorProvider(loginRepository: LoginRepository) =
         AuthInterceptor(loginRepository)
+
+    @Singleton
+    @Provides
+    fun qrGeneratorProvider(): QrGenerator = ZxingQrGenerator()
 
     @Singleton
     @Provides
@@ -77,8 +83,12 @@ class FrameworkModule {
 
     @Singleton
     @Provides
-    fun loginSharedPreferencesDataSource(sharedPreferences: SharedPreferences): LocalSessionDataSource =
-        LoginSharedPreferenceDataSource(sharedPreferences)
+    fun loginSharedPreferencesDataSource(
+        sharedPreferences: SharedPreferences,
+        application: Application,
+        qrGenerator: QrGenerator
+    ): LocalSessionDataSource =
+        LoggedUserLocalDataSource(sharedPreferences, application, qrGenerator)
 
     @Singleton
     @Provides
@@ -108,4 +118,4 @@ class FrameworkModule {
 
 const val RETROFIT_WITHOUT_AUTH = "RetrofitWithoutAuth"
 const val RETROFIT_WITH_AUTH = "RetrofitWithAuth"
-const val BASE_API_URL = "http://10.0.2.2:5165/api/"
+const val BASE_API_URL = "http://192.168.1.9:5165/api/"

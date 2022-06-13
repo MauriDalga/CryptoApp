@@ -24,18 +24,25 @@ class RegisterViewModel @Inject constructor(private val registerRepository: Regi
     private val _registerResult = MutableLiveData<Resource<RegisteredUser>>()
     val registerResult: LiveData<Resource<RegisteredUser>> = _registerResult
 
-    fun register(name: String, lastName: String, email: String, password: String) {
+    fun register(name: String, lastname: String, email: String, password: String) {
         viewModelScope.launch {
             _registerResult.value = Resource.Loading()
-            _registerResult.value = registerRepository.register(RegisterCredential(name, lastName, email, password))
+            _registerResult.value =
+                registerRepository.register(RegisterCredential(name, lastname, email, password))
         }
     }
 
-    fun registerDataChanged(name: String, lastName: String, email: String, password: String, secondPassword: String) {
+    fun registerDataChanged(
+        name: String,
+        lastname: String,
+        email: String,
+        password: String,
+        secondPassword: String
+    ) {
         if (name.isEmpty()) {
             _registerForm.value = RegisterFormState(nameError = R.string.invalid_name)
-        } else if (lastName.isEmpty()) {
-            _registerForm.value = RegisterFormState(lastNameError = R.string.invalid_last_name)
+        } else if (lastname.isEmpty()) {
+            _registerForm.value = RegisterFormState(lastnameError = R.string.invalid_last_name)
         } else if (!isEmailValid(email)) {
             _registerForm.value = RegisterFormState(emailError = R.string.invalid_email)
         } else if (!isPasswordValid(password)) {
@@ -43,7 +50,8 @@ class RegisterViewModel @Inject constructor(private val registerRepository: Regi
         } else if (!isPasswordValid(secondPassword)) {
             _registerForm.value = RegisterFormState(secondPasswordError = R.string.invalid_password)
         } else if (!arePasswordsTheSame(password, secondPassword)) {
-            _registerForm.value = RegisterFormState(secondPasswordError = R.string.invalid_password_combination)
+            _registerForm.value =
+                RegisterFormState(secondPasswordError = R.string.invalid_password_combination)
         } else {
             _registerForm.value = RegisterFormState(isDataValid = true)
         }
@@ -62,7 +70,7 @@ class RegisterViewModel @Inject constructor(private val registerRepository: Regi
     }
 
     private fun arePasswordsTheSame(password: String, secondPassword: String): Boolean {
-        return password.equals(secondPassword)
+        return password == secondPassword
     }
 }
 

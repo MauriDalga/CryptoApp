@@ -1,19 +1,19 @@
 package com.ort.isp.cryptoapp.data.model.out
 
-import com.ort.isp.cryptoapp.data.model.`in`.LoggedInUser
+import com.ort.isp.cryptoapp.data.model.LoggedUserLocalData
 
 data class UpdatedUser(
     val name: String,
-    val lastName: String,
+    val lastname: String,
     val email: String,
-    val image: String
+    val image: String,
 ) {
     companion object {
-        fun createFrom(registeredUser: LoggedInUser, photo: String) = UpdatedUser(
-            registeredUser.name,
-            registeredUser.lastname,
-            registeredUser.email,
-            photo
+        fun createFrom(loggedUserLocalData: LoggedUserLocalData, photo: String) = UpdatedUser(
+            loggedUserLocalData.name,
+            loggedUserLocalData.lastname,
+            loggedUserLocalData.email,
+            photo,
         )
     }
 }
