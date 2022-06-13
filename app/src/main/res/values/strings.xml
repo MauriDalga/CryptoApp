@@ -31,6 +31,8 @@
     <!-- Simple titles strings  -->
     <string name="home_title">Inicio</string>
     <string name="transaction_history_title">Historial de \ntransacciones</string>
+    <string name="confirm_transaction_title">Confirmar \ntransacción</string>
+    <string name="new_transaction_title">Nueva \ntransacción</string>
     <string name="market_price_title">Precio mercado</string>
     <string name="share_QR_title">Compartir QR</string>
     <string name="read_QR_title">Escaneando QR</string>
@@ -58,4 +60,16 @@
     <string name="action_share_qr">ENVIAR CÓDIGO QR</string>
     <string name="share_qr_title">Compartir con</string>
     <string name="share_qr_subject">Imagen QR</string>
+
+    <!-- Strings related to TransactionFragment -->
+    <string name="back_button">Back</string>
+    <string name="public_key">Clave pública</string>
+    <string name="crypto">Criptomoneda</string>
+    <string name="quantity">Cantidad</string>
+    <string name="introduce_quantity">Ingrese la cantidad</string>
+    <string name="send_button">ENVIAR</string>
+    <string name="confirm_button">CONFIRMAR</string>
+    <string name="cancel_transaction">Cancelar transacción</string>
+    <string name="successful_transaction">Transacción exitosa</string>
+    <string name="invalid_amount">La cantidad debe ser mayor a 0</string>
 </resources>

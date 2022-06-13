@@ -51,7 +51,7 @@ class TransactionHistoryAdapter : RecyclerView.Adapter<TransactionHistoryAdapter
 
             transactionDate.text =
                 SimpleDateFormat("d MMM", Locale("es", "ar")).format(transactionDetail.date)
-            transactionId.text = transactionDetail.id
+            transactionId.text = transactionDetail.walletAddress
         }
     }
 }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.ort.isp.cryptoapp.R
 import com.ort.isp.cryptoapp.databinding.FragmentReadQrBinding
 import com.ort.isp.cryptoapp.framework.ui.shared.TitledNavActivity
@@ -26,6 +27,17 @@ class ReadQrFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnConfirm.setOnClickListener {
+            val action =
+                ReadQrFragmentDirections.actionNavigationReadQrToTransactionFragment(
+                    binding.publicKeyReadQr.text.toString()
+                )
+            findNavController().navigate(action)
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
