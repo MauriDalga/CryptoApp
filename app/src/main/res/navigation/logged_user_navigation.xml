@@ -6,12 +6,6 @@
     app:startDestination="@id/navigation_home">
 
     <fragment
-        android:id="@+id/navigation_read_qr"
-        android:name="com.ort.isp.cryptoapp.framework.ui.readQr.ReadQrFragment"
-        android:label="navigation_read_qr"
-        tools:layout="@layout/fragment_read_qr" />
-
-    <fragment
         android:id="@+id/navigation_share_qr"
         android:name="com.ort.isp.cryptoapp.framework.ui.shareQr.ShareQrFragment"
         android:label="navigation_share_qr"
@@ -34,6 +28,57 @@
         android:name="com.ort.isp.cryptoapp.framework.ui.marketPrice.MarketPriceFragment"
         android:label="navigation_market_price"
         tools:layout="@layout/fragment_market_price" />
+
+    <navigation
+        android:id="@+id/navigation_transaction_flow"
+        app:startDestination="@id/navigation_read_qr">
+
+        <fragment
+            android:id="@+id/navigation_read_qr"
+            android:name="com.ort.isp.cryptoapp.framework.ui.readQr.ReadQrFragment"
+            android:label="navigation_read_qr"
+            tools:layout="@layout/fragment_read_qr">
+            <action
+                android:id="@+id/action_navigation_read_qr_to_transactionFragment"
+                app:destination="@id/transactionFragment" />
+        </fragment>
+
+        <fragment
+            android:id="@+id/transactionFragment"
+            android:name="com.ort.isp.cryptoapp.framework.ui.transaction.TransactionFragment"
+            android:label="TransactionFragment">
+            <action
+                android:id="@+id/action_transactionFragment_to_transactionConfirmFragment"
+                app:destination="@id/transactionConfirmFragment" />
+            <action
+                android:id="@+id/action_transactionFragment_to_navigation_read_qr"
+                app:destination="@id/navigation_read_qr" />
+            <argument
+                android:name="publicKey"
+                app:argType="string" />
+        </fragment>
+
+        <fragment
+            android:id="@+id/transactionConfirmFragment"
+            android:name="com.ort.isp.cryptoapp.framework.ui.transaction.TransactionConfirmFragment"
+            android:label="TransactionConfirmFragment">
+            <action
+                android:id="@+id/action_transactionConfirmFragment_to_transactionFragment"
+                app:destination="@id/transactionFragment" />
+            <action
+                android:id="@+id/action_transactionConfirmFragment_to_navigation_read_qr"
+                app:destination="@id/navigation_read_qr" />
+            <argument
+                android:name="publicKey"
+                app:argType="string" />
+            <argument
+                android:name="coinName"
+                app:argType="string" />
+            <argument
+                android:name="amount"
+                app:argType="string" />
+        </fragment>
+    </navigation>
 
 
 </navigation>

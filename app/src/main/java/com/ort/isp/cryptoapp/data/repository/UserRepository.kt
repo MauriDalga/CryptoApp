@@ -5,6 +5,7 @@ import com.ort.isp.cryptoapp.data.model.`in`.UserFullData
 import com.ort.isp.cryptoapp.data.model.out.UpdatedUser
 import com.ort.isp.cryptoapp.data.source.LocalSessionDataSource
 import com.ort.isp.cryptoapp.data.source.RemoteUserDataSource
+import com.ort.isp.cryptoapp.framework.data.local.CoinsCache.updateCacheWith
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(
@@ -13,7 +14,11 @@ class UserRepository @Inject constructor(
 ) {
     suspend fun getUserFullData(): Resource<UserFullData> {
         val userSession = localSessionDataSource.get()!!
-        return remoteCoinAccountDataSource.getUserFullData(userSession)
+        val userFullData = remoteCoinAccountDataSource.getUserFullData(userSession)
+        if (userFullData is Resource.Success) {
+            updateCacheWith(userFullData.data!!)
+        }
+        return userFullData
     }
 
     suspend fun uploadUserProfilePhoto(photo: String): Resource<Unit> {

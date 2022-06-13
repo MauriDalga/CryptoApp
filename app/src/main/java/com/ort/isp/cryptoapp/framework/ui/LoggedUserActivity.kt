@@ -43,7 +43,7 @@ class LoggedUserActivity : TitledNavActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_share_qr, R.id.navigation_home, R.id.navigation_transaction_history,
-                R.id.navigation_read_qr, R.id.navigation_market_price
+                R.id.navigation_transaction_flow, R.id.navigation_market_price
             )
         )
 
