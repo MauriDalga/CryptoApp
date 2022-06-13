@@ -38,7 +38,7 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val nameEditText = binding.name
-        val lastNameEditText = binding.lastName
+        val lastnameEditText = binding.lastname
         val emailEditText = binding.email
         val passwordEditText = binding.password
         val secondPasswordEditText = binding.secondPassword
@@ -54,8 +54,8 @@ class RegisterFragment : Fragment() {
                 registerFormState.nameError?.let {
                     nameEditText.error = getString(it)
                 }
-                registerFormState.lastNameError?.let {
-                    lastNameEditText.error = getString(it)
+                registerFormState.lastnameError?.let {
+                    lastnameEditText.error = getString(it)
                 }
                 registerFormState.emailError?.let {
                     emailEditText.error = getString(it)
@@ -101,7 +101,7 @@ class RegisterFragment : Fragment() {
             override fun afterTextChanged(s: Editable) {
                 registerViewModel.registerDataChanged(
                     nameEditText.text.toString(),
-                    lastNameEditText.text.toString(),
+                    lastnameEditText.text.toString(),
                     emailEditText.text.toString(),
                     passwordEditText.text.toString(),
                     secondPasswordEditText.text.toString()
@@ -109,7 +109,7 @@ class RegisterFragment : Fragment() {
             }
         }
         nameEditText.addTextChangedListener(afterTextChangedListener)
-        lastNameEditText.addTextChangedListener(afterTextChangedListener)
+        lastnameEditText.addTextChangedListener(afterTextChangedListener)
         emailEditText.addTextChangedListener(afterTextChangedListener)
         passwordEditText.addTextChangedListener(afterTextChangedListener)
         secondPasswordEditText.addTextChangedListener(afterTextChangedListener)
@@ -119,7 +119,7 @@ class RegisterFragment : Fragment() {
                 loadingProgressBar.visibility = View.VISIBLE
                 registerViewModel.register(
                     nameEditText.text.toString(),
-                    lastNameEditText.text.toString(),
+                    lastnameEditText.text.toString(),
                     emailEditText.text.toString(),
                     passwordEditText.text.toString()
                 )

@@ -52,4 +52,10 @@
     <!-- Strings related to TransactionHistoryFragment -->
     <string name="operation">operation</string>
     <string name="empty_transactions">No existen transacciones \npor el momento.</string>
+
+    <!-- Strings related to ShareQrFragment -->
+    <string name="qr_code_image_content">imágen del código QR</string>
+    <string name="action_share_qr">ENVIAR CÓDIGO QR</string>
+    <string name="share_qr_title">Compartir con</string>
+    <string name="share_qr_subject">Imagen QR</string>
 </resources>

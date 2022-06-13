@@ -5,15 +5,17 @@ data class LoggedInUser(
     val name: String,
     val lastname: String,
     val email: String,
-    val token: String
+    val token: String,
+    val walletAddress: String
 ) {
     companion object {
         fun createFrom(registeredUser: RegisteredUser) = LoggedInUser(
             registeredUser.id,
             registeredUser.name,
-            registeredUser.lastName,
+            registeredUser.lastname,
             registeredUser.email,
-            registeredUser.token
+            registeredUser.token,
+            registeredUser.walletAddress
         )
     }
 }
