@@ -8,15 +8,18 @@ import com.ort.isp.cryptoapp.R
 import com.ort.isp.cryptoapp.data.model.`in`.TransactionDetail
 import com.ort.isp.cryptoapp.databinding.TransactionHistoryRowBinding
 import com.ort.isp.cryptoapp.framework.ui.shared.inflate
-import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class TransactionHistoryAdapter : RecyclerView.Adapter<TransactionHistoryAdapter.ViewHolder>() {
 
     var transactionsDetails = mutableListOf<TransactionDetail>()
+    lateinit var userId: String
 
-    fun setTransactionsDetail(transactionsDetails: List<TransactionDetail>) {
+    fun setTransactionsDetail(transactionsDetails: List<TransactionDetail>, userId: String) {
         this.transactionsDetails = transactionsDetails.toMutableList()
+        this.userId = userId
         notifyDataSetChanged()
     }
 
@@ -30,14 +33,14 @@ class TransactionHistoryAdapter : RecyclerView.Adapter<TransactionHistoryAdapter
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val transactionDetails = transactionsDetails[position]
         holder.itemView.resources
-        holder.bind(transactionDetails)
+        holder.bind(transactionDetails, userId)
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val binding = TransactionHistoryRowBinding.bind(view)
 
-        fun bind(transactionDetail: TransactionDetail) = with(binding) {
-            if (transactionDetail.operation == "Debit") {
+        fun bind(transactionDetail: TransactionDetail, userId: String) = with(binding) {
+            if (transactionDetail.senderId == userId) {
                 operationIcon.setImageDrawable(
                     ResourcesCompat.getDrawable(itemView.resources, R.drawable.ic_debit, null)
                 )
@@ -47,11 +50,10 @@ class TransactionHistoryAdapter : RecyclerView.Adapter<TransactionHistoryAdapter
                 )
             }
             transactionAmount.text = transactionDetail.amount.toString()
-            coinName.text = transactionDetail.coinName
+            coinName.text = transactionDetail.coin.longName
 
-            transactionDate.text =
-                SimpleDateFormat("d MMM", Locale("es", "ar")).format(transactionDetail.date)
-            transactionId.text = transactionDetail.walletAddress
+            transactionDate.text = DateTimeFormatter.ofPattern("d MMM", Locale("es", "ar"))
+                .format(LocalDateTime.parse(transactionDetail.date))
         }
     }
 }

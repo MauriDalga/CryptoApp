@@ -73,7 +73,7 @@ class TransactionFragment : Fragment() {
 
     private fun addListenerOnButton() {
         cryptoSpinner = binding.cryptoSpinner
-        binding.btnSubmit!!.setOnClickListener {
+        binding.btnSubmit.setOnClickListener {
             val action =
                 TransactionFragmentDirections.actionTransactionFragmentToTransactionConfirmFragment(
                     binding.publicKey.text.toString(),

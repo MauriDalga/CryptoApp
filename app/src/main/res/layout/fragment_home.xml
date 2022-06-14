@@ -32,6 +32,7 @@
             android:layout_marginStart="27dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/roboto"
+            android:textColor="@color/gray_alpha"
             android:clickable="true"
             android:text="@string/edit_user_photo"
             android:textSize="20sp"

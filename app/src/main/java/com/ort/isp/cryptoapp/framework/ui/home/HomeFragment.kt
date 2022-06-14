@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
             if (it) {
                 dispatchTakePictureIntent()
             } else {
-                showMessage(getString(R.string.camera_access_denied_feedback))
+                showMessage(getString(R.string.camera_access_denied_feedback_profile))
             }
         }
     private var _binding: FragmentHomeBinding? = null

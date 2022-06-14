@@ -6,12 +6,12 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface TransactionService {
-    @GET("users/{userId}/transactions")
-    suspend fun getTransactionsByUser(@Path("userId") userId: String): Response<List<TransactionDetail>>
+    @GET("transactions")
+    suspend fun getTransactionsByUser(@Query("userId") userId: String): Response<List<TransactionDetail>>
 
     @POST("transactions")
-    suspend fun createTransaction(@Body transactionCredential: TransactionCredential): Response<Nothing>
+    suspend fun createTransaction(@Body transactionCredential: TransactionCredential): Response<Unit>
 }

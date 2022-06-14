@@ -1,5 +1,6 @@
 package com.ort.isp.cryptoapp.framework.data.server
 
+import android.util.Log
 import com.ort.isp.cryptoapp.data.model.Resource
 import com.ort.isp.cryptoapp.framework.data.model.ErrorResponse
 import kotlinx.coroutines.Dispatchers
@@ -35,6 +36,7 @@ abstract class AbstractServerDataSource {
                     }
                 }
             } catch (e: Exception) {
+                Log.e(TAG, "Accessing server data source error", e)
                 when (e) {
                     is HttpException, is ConnectException -> Resource.Error(
                         errorMessage = CHECK_YOUR_INTERNET
@@ -57,3 +59,5 @@ abstract class AbstractServerDataSource {
 private const val SOMETHING_WENT_WRONG = "Error desconocido"
 private const val CHECK_YOUR_INTERNET = "Por favor, revisa tu conexión a internet"
 private const val HTTP_UNAUTHORIZED_CODE = 401
+
+private const val TAG = "AbstractServerDataSource"

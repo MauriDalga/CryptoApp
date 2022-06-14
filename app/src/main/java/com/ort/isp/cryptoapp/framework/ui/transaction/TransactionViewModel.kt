@@ -19,8 +19,8 @@ class TransactionViewModel @Inject constructor(
 
     private val _transactionForm = MutableLiveData<TransactionFormState>()
     val transactionForm: LiveData<TransactionFormState> = _transactionForm
-    private val _transaction = MutableLiveData<Resource<Nothing>>()
-    val transaction: LiveData<Resource<Nothing>> = _transaction
+    private val _transaction = MutableLiveData<Resource<Unit>>()
+    val transaction: LiveData<Resource<Unit>> = _transaction
 
     fun createTransaction(
         amount: Double,

@@ -21,7 +21,7 @@ class TransactionRepository @Inject constructor(
         amount: Double,
         coinId: Int,
         receiverWalletAddress: String
-    ): Resource<Nothing> {
+    ): Resource<Unit> {
         val userSession = localSessionDataSource.get()!!
         val transactionCredential = TransactionCredential(
             amount,
