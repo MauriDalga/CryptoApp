@@ -7,5 +7,5 @@ import com.ort.isp.cryptoapp.data.model.out.TransactionCredential
 
 interface RemoteTransactionDataSource {
     suspend fun getTransactionHistoryByUser(loggedUserLocalData: LoggedUserLocalData): Resource<List<TransactionDetail>>
-    suspend fun createTransaction(transactionCredential: TransactionCredential): Resource<Nothing>
+    suspend fun createTransaction(transactionCredential: TransactionCredential): Resource<Unit>
 }

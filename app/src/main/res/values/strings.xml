@@ -42,14 +42,14 @@
     <string name="transaction_history_menu">HISTORIAL DE \nTRANSACCIONES</string>
     <string name="market_price_menu">PRECIO MERCADO</string>
     <string name="share_QR_menu">COMPARTIR QR</string>
-    <string name="read_QR_menu">LEER QR</string>
+    <string name="read_QR_menu">Coloque el QR dentro de los indicadores blancos</string>
 
     <!-- Strings related to HomeFragment -->
     <string name="coin_icon_row_description">Ícono de moneda</string>
     <string name="my_coins_title">MIS MONEDAS</string>
     <string name="edit_user_photo">Editar foto</string>
     <string name="unexpected_upload_photo_error">Error inesperado al editar la foto.</string>
-    <string name="camera_access_denied_feedback">No se puede editar la foto sin acceso a la cámara</string>
+    <string name="camera_access_denied_feedback_profile">No se puede editar la foto sin acceso a la cámara</string>
 
     <!-- Strings related to TransactionHistoryFragment -->
     <string name="operation">operation</string>
@@ -72,4 +72,7 @@
     <string name="cancel_transaction">Cancelar transacción</string>
     <string name="successful_transaction">Transacción exitosa</string>
     <string name="invalid_amount">La cantidad debe ser mayor a 0</string>
+
+    <!-- Strings related to ReadQrFragment -->
+    <string name="camera_access_denied_feedback_read_qr">No se puede leer códigos QR sin acceso a la cámara.</string>
 </resources>

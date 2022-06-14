@@ -10,15 +10,19 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ort.isp.cryptoapp.R
 import com.ort.isp.cryptoapp.data.model.Resource
+import com.ort.isp.cryptoapp.data.repository.LoginRepository
 import com.ort.isp.cryptoapp.databinding.FragmentTransactionHistoryBinding
 import com.ort.isp.cryptoapp.framework.ui.shared.TitledNavActivity
 import com.ort.isp.cryptoapp.framework.ui.shared.logout
 import com.ort.isp.cryptoapp.framework.ui.shared.showMessage
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class TransactionHistoryFragment : Fragment() {
 
+    @Inject
+    lateinit var loginRepository: LoginRepository
     private lateinit var transactionHistoryViewModel: TransactionHistoryViewModel
     lateinit var adapter: TransactionHistoryAdapter
     private var _binding: FragmentTransactionHistoryBinding? = null
@@ -60,7 +64,10 @@ class TransactionHistoryFragment : Fragment() {
                             binding.emptyTransactionList.visibility = View.VISIBLE
                         } else {
                             binding.emptyTransactionList.visibility = View.GONE
-                            adapter.setTransactionsDetail(transactionsList)
+                            adapter.setTransactionsDetail(
+                                transactionsList,
+                                loginRepository.getSession()!!.id
+                            )
                             binding.transactionHistoryList.visibility = View.VISIBLE
                         }
                     }

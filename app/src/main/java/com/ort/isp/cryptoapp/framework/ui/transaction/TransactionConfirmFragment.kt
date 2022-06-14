@@ -15,6 +15,7 @@ import com.ort.isp.cryptoapp.data.model.Resource
 import com.ort.isp.cryptoapp.databinding.FragmentTransactionConfirmBinding
 import com.ort.isp.cryptoapp.framework.data.local.CoinsCache.getCoinIdByCoinName
 import com.ort.isp.cryptoapp.framework.ui.shared.TitledNavActivity
+import com.ort.isp.cryptoapp.framework.ui.shared.logout
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
@@ -59,6 +60,9 @@ class TransactionConfirmFragment : Fragment() {
                     )
                     showMessageAndNavigateToReadQrTransaction()
                 }
+                is Resource.Unauthorized -> {
+                    logout()
+                }
                 else -> {
                     loadingProgressBar.visibility = View.GONE
                     binding.transactionResult.setBackgroundColor(
@@ -81,7 +85,7 @@ class TransactionConfirmFragment : Fragment() {
     }
 
     private fun addListenerOnButton() {
-        binding.btnConfirm!!.setOnClickListener {
+        binding.btnConfirm.setOnClickListener {
             transactionViewModel.createTransaction(
                 binding.quantityEntry.text.toString().toDouble(),
                 getCoinIdByCoinName(binding.cryptoEntry.text.toString()),

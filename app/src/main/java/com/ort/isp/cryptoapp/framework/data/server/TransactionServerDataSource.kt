@@ -13,7 +13,7 @@ class TransactionServerDataSource @Inject constructor(private val transactionSer
         return safeApiCall { transactionService.getTransactionsByUser(loggedUserLocalData.id) }
     }
 
-    override suspend fun createTransaction(transactionCredential: TransactionCredential): Resource<Nothing> {
+    override suspend fun createTransaction(transactionCredential: TransactionCredential): Resource<Unit> {
         return safeApiCall { transactionService.createTransaction(transactionCredential) }
     }
 }

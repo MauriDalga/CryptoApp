@@ -1,5 +1,10 @@
 package com.ort.isp.cryptoapp.data.model.`in`
 
-import java.util.Date
-
-data class TransactionDetail(val operation: String, val amount: Double, val coinName: String, val date: Date, val walletAddress: String)
+data class TransactionDetail(
+    val id: String,
+    val amount: Double,
+    val senderId: String,
+    val receiverId: String,
+    val date: String,
+    val coin: Coin
+)
