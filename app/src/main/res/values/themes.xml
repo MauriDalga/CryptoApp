@@ -56,4 +56,7 @@
         <item name="android:layout_marginBottom">@dimen/loading_marginBottom</item>
     </style>
 
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

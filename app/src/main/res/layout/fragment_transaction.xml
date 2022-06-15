@@ -68,8 +68,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
+        style="@style/Widget.AppCompat.DropDownItem.Spinner"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/crypto_title" />
+        app:layout_constraintTop_toBottomOf="@+id/crypto_title"
+        android:spinnerMode="dropdown" />
 
     <TextView
         android:id="@+id/quantity"

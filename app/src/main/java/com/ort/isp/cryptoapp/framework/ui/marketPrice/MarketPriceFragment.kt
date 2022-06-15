@@ -33,7 +33,7 @@ class MarketPriceFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val loadingProgressBar = binding.loading
+        binding.loading
         binding.coinAccountList.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = this@MarketPriceFragment.adapter
