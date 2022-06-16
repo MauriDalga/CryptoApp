@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/transactionHistory"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".framework.ui.transactionHistory.TransactionHistoryFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/transaction_history_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadeScrollbars="false"
+        tools:itemCount="3"
+        tools:listitem="@layout/transaction_history_row" />
+
+    <TextView
+        android:id="@+id/empty_transaction_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/empty_transactions"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <ProgressBar
+        android:id="@+id/loading"
+        style="@style/Widget.CryptoApp.ProgressBar" />
+</LinearLayout>

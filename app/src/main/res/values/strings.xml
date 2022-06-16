@@ -1,0 +1,83 @@
+<resources>
+    <string name="app_name">CryptoApp</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="action_enter">ENTRAR</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="invalid_email">Email no válido</string>
+    <string name="invalid_password">Password debe tener al menos 7 carácteres</string>
+    <string name="login_failed">"Login failed"</string>
+
+    <!-- Strings related to login -->
+    <string name="register">"Registrar !"</string>
+    <string name="register_now">¿No tienes una cuenta? ¡Regístrate ahora!</string>
+    <string name="login_title">Inicio de Sesión</string>
+    <string name="cryptoapp_logo_description">logo de cryptoapp</string>
+
+    <!-- Strings related to register -->
+    <string name="prompt_name">Nombre</string>
+    <string name="prompt_last_name">Apellido</string>
+    <string name="prompt_second_password">Repetir contraseña</string>
+    <string name="register_title">Registro</string>
+    <string name="action_register_short">Registrar</string>
+    <string name="action_register">REGISTRAR</string>
+    <string name="login">¿Ya tienes una cuenta? ¡Ingresa!</string>
+    <string name="invalid_name">El nombre no puede ser vacío</string>
+    <string name="invalid_last_name">El apellido no puede ser vacío</string>
+    <string name="invalid_password_combination">Las contraseñas deben ser iguales</string>
+
+    <!-- Simple titles strings  -->
+    <string name="home_title">Inicio</string>
+    <string name="transaction_history_title">Historial de \ntransacciones</string>
+    <string name="confirm_transaction_title">Confirmar \ntransacción</string>
+    <string name="new_transaction_title">Nueva \ntransacción</string>
+    <string name="market_price_title">Precio mercado</string>
+    <string name="share_QR_title">Compartir QR</string>
+    <string name="read_QR_title">Escaneando QR</string>
+
+    <!-- Strings related to menu  -->
+    <string name="home_menu">INICIO</string>
+    <string name="transaction_history_menu">HISTORIAL DE \nTRANSACCIONES</string>
+    <string name="market_price_menu">PRECIO MERCADO</string>
+    <string name="share_QR_menu">COMPARTIR QR</string>
+    <string name="read_QR_menu">Coloque el QR dentro de los indicadores blancos</string>
+
+    <!-- Strings related to HomeFragment -->
+    <string name="coin_icon_row_description">Ícono de moneda</string>
+    <string name="my_coins_title">MIS MONEDAS</string>
+    <string name="edit_user_photo">Editar foto</string>
+    <string name="unexpected_upload_photo_error">Error inesperado al editar la foto.</string>
+    <string name="camera_access_denied_feedback_profile">No se puede editar la foto sin acceso a la cámara</string>
+    <string name="logout_button_content_description">Ícono logout</string>
+    <string name="logout_dialog_message">Seguro que quieres salir?</string>
+    <string name="logout_dialog_yes_option">SI</string>
+    <string name="logout_dialog_no_option">NO</string>
+    <string name="logout_dialog_title">LOGOUT</string>
+
+    <!-- Strings related to TransactionHistoryFragment -->
+    <string name="operation">operation</string>
+    <string name="empty_transactions">No existen transacciones \npor el momento.</string>
+
+    <!-- Strings related to ShareQrFragment -->
+    <string name="qr_code_image_content">imágen del código QR</string>
+    <string name="action_share_qr">ENVIAR CÓDIGO QR</string>
+    <string name="share_qr_title">Compartir con</string>
+    <string name="share_qr_subject">Imagen QR</string>
+
+    <!-- Strings related to TransactionFragment -->
+    <string name="back_button">Back</string>
+    <string name="public_key">Clave pública</string>
+    <string name="crypto">Criptomoneda</string>
+    <string name="quantity">Cantidad</string>
+    <string name="introduce_quantity">Ingrese la cantidad</string>
+    <string name="send_button">ENVIAR</string>
+    <string name="confirm_button">CONFIRMAR</string>
+    <string name="cancel_transaction">Cancelar transacción</string>
+    <string name="successful_transaction">Transacción exitosa</string>
+    <string name="invalid_amount">La cantidad debe ser mayor a 0</string>
+
+    <!-- Strings related to ReadQrFragment -->
+    <string name="camera_access_denied_feedback_read_qr">No se puede leer códigos QR sin acceso a la cámara.</string>
+</resources>
