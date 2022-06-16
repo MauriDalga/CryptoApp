@@ -52,8 +52,9 @@ class TransactionHistoryAdapter : RecyclerView.Adapter<TransactionHistoryAdapter
             transactionAmount.text = transactionDetail.amount.toString()
             coinName.text = transactionDetail.coin.longName
 
-            transactionDate.text = DateTimeFormatter.ofPattern("d MMM", Locale("es", "ar"))
+            transactionDate.text = DateTimeFormatter.ofPattern("dd-MM HH:mm", Locale("es", "ar"))
                 .format(LocalDateTime.parse(transactionDetail.date))
+            walletAddress.text = transactionDetail.walletAddress
         }
     }
 }

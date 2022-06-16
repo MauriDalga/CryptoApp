@@ -12,6 +12,7 @@ import com.ort.isp.cryptoapp.R
 import com.ort.isp.cryptoapp.data.model.Resource
 import com.ort.isp.cryptoapp.data.repository.LoginRepository
 import com.ort.isp.cryptoapp.databinding.FragmentTransactionHistoryBinding
+import com.ort.isp.cryptoapp.framework.data.notification.TransactionNotificationService
 import com.ort.isp.cryptoapp.framework.ui.shared.TitledNavActivity
 import com.ort.isp.cryptoapp.framework.ui.shared.logout
 import com.ort.isp.cryptoapp.framework.ui.shared.showMessage
@@ -38,6 +39,7 @@ class TransactionHistoryFragment : Fragment() {
         adapter = TransactionHistoryAdapter()
         _binding = FragmentTransactionHistoryBinding.inflate(inflater, container, false)
         (activity as TitledNavActivity).setNavTitle(getString(R.string.transaction_history_title))
+        TransactionNotificationService.notificationAck()
         return binding.root
     }
 

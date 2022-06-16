@@ -18,7 +18,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:stateListAnimator="@android:anim/cycle_interpolator">
 
             <ImageView
                 android:id="@+id/logo"
@@ -39,11 +40,23 @@
                 android:layout_marginStart="16dp"
                 android:text="@string/home_title"
                 android:textColor="@color/white"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/logo"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/new_transaction_icon"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/transaction_notification_icon"
+                android:visibility="invisible"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@+id/person_name_title"
+                tools:layout_editor_absoluteY="10dp"
+                android:clickable="true" />
 
             <TextView
                 android:id="@+id/person_name_title"

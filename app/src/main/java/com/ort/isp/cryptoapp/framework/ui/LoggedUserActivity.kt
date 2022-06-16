@@ -2,6 +2,7 @@ package com.ort.isp.cryptoapp.framework.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -11,6 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ort.isp.cryptoapp.R
 import com.ort.isp.cryptoapp.data.repository.LoginRepository
 import com.ort.isp.cryptoapp.databinding.ActivityLoggedUserBinding
+import com.ort.isp.cryptoapp.framework.data.notification.TransactionNotificationService
 import com.ort.isp.cryptoapp.framework.ui.shared.NEW_LOGIN_NEEDED
 import com.ort.isp.cryptoapp.framework.ui.shared.TitledNavActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,8 +54,20 @@ class LoggedUserActivity : TitledNavActivity() {
                 R.id.navigation_transaction_flow, R.id.navigation_market_price
             )
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        TransactionNotificationService.transactionReachedLiveData.observe(this) {
+            if (it) {
+                binding.newTransactionIcon.visibility = View.VISIBLE
+            } else {
+                binding.newTransactionIcon.visibility = View.INVISIBLE
+            }
+        }
+        binding.newTransactionIcon.setOnClickListener {
+            navView.selectedItemId = R.id.navigation_transaction_history
+        }
     }
 
     override fun setNavTitle(title: String) {

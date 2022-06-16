@@ -18,6 +18,7 @@ import com.ort.isp.cryptoapp.R
 import com.ort.isp.cryptoapp.data.model.Resource
 import com.ort.isp.cryptoapp.data.model.`in`.UserFullData
 import com.ort.isp.cryptoapp.databinding.FragmentHomeBinding
+import com.ort.isp.cryptoapp.framework.data.notification.TransactionNotificationService
 import com.ort.isp.cryptoapp.framework.ui.shared.TitledNavActivity
 import com.ort.isp.cryptoapp.framework.ui.shared.logout
 import com.ort.isp.cryptoapp.framework.ui.shared.showMessage
@@ -54,6 +55,7 @@ class HomeFragment : Fragment() {
         adapter = CoinAccountAdapter()
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         (activity as TitledNavActivity).setNavTitle(getString(R.string.home_title))
+        TransactionNotificationService.notificationAck()
         return binding.root
     }
 

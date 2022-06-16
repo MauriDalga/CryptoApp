@@ -48,11 +48,11 @@ class MarketPriceFragment : Fragment() {
 
     private fun updateUIWithCoins() {
         val marketCoin: MutableList<MarketCoin> = ArrayList()
-// Here we suppose to put the real time value of each coin, but we mock this because we didn't make on time to add this feature
+        // Here we suppose to put the real time value of each coin, but we mock this because we didn't make on time to add this feature
         for (coin in getCoins()) marketCoin.add(MarketCoin(coin, RANDOM_NUMBER_MOCK))
         adapter.setCoinAccount(marketCoin)
     }
 
 }
 
-private const val RANDOM_NUMBER_MOCK = "40"
+private const val RANDOM_NUMBER_MOCK = "40.85"
