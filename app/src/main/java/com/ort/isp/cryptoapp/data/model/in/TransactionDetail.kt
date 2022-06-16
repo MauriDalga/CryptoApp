@@ -6,5 +6,6 @@ data class TransactionDetail(
     val senderId: String,
     val receiverId: String,
     val date: String,
-    val coin: Coin
+    val coin: Coin,
+    val walletAddress: String
 )

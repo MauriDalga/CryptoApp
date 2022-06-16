@@ -10,6 +10,7 @@ import com.ort.isp.cryptoapp.data.model.Resource
 import com.ort.isp.cryptoapp.data.model.`in`.LoggedInUser
 import com.ort.isp.cryptoapp.data.model.out.LoginCredential
 import com.ort.isp.cryptoapp.data.repository.LoginRepository
+import com.ort.isp.cryptoapp.framework.data.local.NotificationTokenCache
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,7 +28,13 @@ class LoginViewModel @Inject constructor(private val loginRepository: LoginRepos
     fun login(email: String, password: String) {
         viewModelScope.launch {
             _loginResult.value = Resource.Loading()
-            _loginResult.value = loginRepository.login(LoginCredential(email, password))
+            _loginResult.value = loginRepository.login(
+                LoginCredential(
+                    email,
+                    password,
+                    NotificationTokenCache.firebaseToken
+                )
+            )
         }
     }
 

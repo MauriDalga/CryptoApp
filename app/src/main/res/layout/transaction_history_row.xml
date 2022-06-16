@@ -12,11 +12,10 @@
     app:cardMaxElevation="10dp"
     app:cardPreventCornerOverlap="true">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:orientation="horizontal"
         android:paddingLeft="@dimen/fragment_horizontal_margin"
         android:paddingTop="@dimen/fragment_vertical_margin"
         android:paddingRight="@dimen/fragment_horizontal_margin"
@@ -25,8 +24,13 @@
         <ImageView
             android:id="@+id/operation_icon"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
             android:contentDescription="@string/operation"
+            app:layout_constraintBottom_toBottomOf="@+id/transaction_amount"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/transaction_amount"
             tools:src="@drawable/ic_accredit" />
 
         <TextView
@@ -35,9 +39,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/poppins_medium"
             android:textSize="18sp"
             android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@+id/operation_icon"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="10" />
 
         <TextView
@@ -45,10 +52,13 @@
             style="@style/Widget.CryptoApp.InfoText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="5dp"
             android:fontFamily="@font/poppins_medium"
             android:textSize="18sp"
             android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@+id/transaction_amount"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Bitcoin" />
 
         <TextView
@@ -56,13 +66,31 @@
             style="@style/Widget.CryptoApp.InfoText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_weight="1"
-            android:textAlignment="textEnd"
             android:fontFamily="@font/poppins"
+            android:textAlignment="textEnd"
             android:textColor="#969595"
             android:textSize="14sp"
             android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="29 Marzo" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/wallet_address"
+            style="@style/Widget.CryptoApp.InfoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@+id/operation_icon"
+            app:layout_constraintTop_toBottomOf="@+id/coin_name"
+            tools:text="7310ad36261e465ebff86dc52d9e7e6b" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

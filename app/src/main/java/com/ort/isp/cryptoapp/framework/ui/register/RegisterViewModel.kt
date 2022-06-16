@@ -10,6 +10,7 @@ import com.ort.isp.cryptoapp.data.model.Resource
 import com.ort.isp.cryptoapp.data.model.`in`.RegisteredUser
 import com.ort.isp.cryptoapp.data.model.out.RegisterCredential
 import com.ort.isp.cryptoapp.data.repository.RegisterRepository
+import com.ort.isp.cryptoapp.framework.data.local.NotificationTokenCache
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,7 +29,15 @@ class RegisterViewModel @Inject constructor(private val registerRepository: Regi
         viewModelScope.launch {
             _registerResult.value = Resource.Loading()
             _registerResult.value =
-                registerRepository.register(RegisterCredential(name, lastname, email, password))
+                registerRepository.register(
+                    RegisterCredential(
+                        name,
+                        lastname,
+                        email,
+                        password,
+                        NotificationTokenCache.firebaseToken
+                    )
+                )
         }
     }
 
