@@ -43,7 +43,7 @@ class TransactionViewModel @Inject constructor(
     }
 
     private fun isAmountValid(amount: String): Boolean {
-        return TRANSACTION_MIN_AMOUNT < amount.toDouble()
+        return amount.isNotBlank() && TRANSACTION_MIN_AMOUNT < amount.toDouble()
     }
 }
 
